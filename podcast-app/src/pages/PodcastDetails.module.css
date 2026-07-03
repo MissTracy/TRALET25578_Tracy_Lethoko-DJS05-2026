@@ -91,3 +91,47 @@
     }
   
   }
+
+
+
+  .seasons {
+    margin-top: 3rem;
+  }
+  
+  .seasons h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .seasonCard {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .seasonCard:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  }
+  
+  .seasonImage {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  @media (max-width:768px){
+    .seasonCard{
+      flex-direction:column;
+    }
+  
+    .seasonImage{
+      width:100%;
+      height:auto;
+    }
+  }

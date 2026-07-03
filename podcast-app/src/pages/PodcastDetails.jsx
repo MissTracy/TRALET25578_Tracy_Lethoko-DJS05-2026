@@ -128,7 +128,26 @@ export default function PodcastDetails() {
 
                 </div>
             </div>
-            </section>                 
+            </section>  
+            <section className={styles.seasons}>
+              <h2>Current Seasons</h2>
+
+              {podcast.seasons.map((season, index) => (
+                <div key={season.season} className={styles.seasonCard}>
+                  <img
+                    src={season.image}
+                    alt={season.title}
+                    className={styles.seasonImage}
+                  />
+
+                  <div>
+                    <h3>{season.title}</h3>
+
+                    <p>{season.episodes.length} Episodes</p>
+                  </div>
+                </div>
+              ))}
+            </section>               
         </main>
       );
 }
