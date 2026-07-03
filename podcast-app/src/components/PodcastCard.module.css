@@ -44,3 +44,9 @@
   font-size: 0.8rem;
   color: var(--grey-text);
 }
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
