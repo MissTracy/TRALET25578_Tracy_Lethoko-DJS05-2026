@@ -135,3 +135,28 @@
       height:auto;
     }
   }
+
+  .episodeList {
+    margin-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+  }
+  
+  .episodeCard {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .episodeCard:last-child {
+    border-bottom: none;
+  }
+  
+  .episodeCard h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .episodeCard p {
+    color: #6b7280;
+    line-height: 1.6;
+  }

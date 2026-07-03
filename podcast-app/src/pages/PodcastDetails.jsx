@@ -16,6 +16,7 @@ export default function PodcastDetails() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { allPodcasts } = useContext(PodcastContext);
+    const [selectedSeasonIndex, setSelectedSeasonIndex] = useState(null);
  
     
 
@@ -133,7 +134,19 @@ export default function PodcastDetails() {
               <h2>Current Seasons</h2>
 
               {podcast.seasons.map((season, index) => (
-                <div key={season.season} className={styles.seasonCard}>
+                <div>
+
+
+                <div
+                    key={season.season}
+                    className={styles.seasonCard}
+                    onClick={() =>
+                      setSelectedSeasonIndex(
+                        selectedSeasonIndex === index ? null : index
+                      )
+                    }
+                >
+
                   <img
                     src={season.image}
                     alt={season.title}
@@ -145,7 +158,24 @@ export default function PodcastDetails() {
 
                     <p>{season.episodes.length} Episodes</p>
                   </div>
+                  {selectedSeasonIndex === index && (
+                  <div className={styles.episodeList}>
+                    {season.episodes.map((episode) => (
+                      <div key={episode.episode} className={styles.episodeCard}>
+                        <h4>
+                          Episode {episode.episode}: {episode.title}
+                        </h4>
+
+                        <p>{episode.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 </div>
+
+
+              </div>
+
               ))}
             </section>               
         </main>
