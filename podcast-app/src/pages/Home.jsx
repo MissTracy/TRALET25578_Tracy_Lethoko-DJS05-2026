@@ -1,32 +1,22 @@
 
 
-
+import styles from "../App.module.css";
+import { genres } from "../data";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import SortSelect from "../components/SortSelect";
 import GenreFilter from "../components/GenreFilter";
 import PodcastGrid from "../components/PodcastGrid";
 import Pagination from "../components/Pagination";
-import { PodcastProvider } from "../context/PodcastContext";
-import { fetchPodcasts } from "../api/fetchPodcasts";
-import { genres } from "../data";
-import { useEffect, useState } from "react";
-import styles from "../App.module.css";
 
-export default function Home() {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchPodcasts(setPodcasts, setError, setLoading);
-  }, []);
+export default function Home({ loading, error })  {
+
 
   return (
     <>
       <Header />
 
-      <PodcastProvider initialPodcasts={podcasts}>
         <main className={styles.main}>
           <section className={styles.controls}>
             <SearchBar />
@@ -56,7 +46,6 @@ export default function Home() {
             </>
           )}
         </main>
-      </PodcastProvider>
     </>
   );
 }

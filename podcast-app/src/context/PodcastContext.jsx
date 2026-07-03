@@ -130,6 +130,7 @@ export function PodcastProvider({ children, initialPodcasts }) {
     setPage,
     totalPages,
     podcasts: paged,
+    allPodcasts: initialPodcasts,   
     allPodcastsCount: filtered.length,
   };
 
