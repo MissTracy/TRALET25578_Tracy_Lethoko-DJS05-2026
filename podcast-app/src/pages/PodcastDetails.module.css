@@ -1,0 +1,30 @@
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+  
+  .hero {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .image {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .title {
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    line-height: 1.7;
+  }
