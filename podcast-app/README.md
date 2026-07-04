@@ -1,16 +1,39 @@
-# React + Vite
+# 🎙️ Podcast Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+A React application that allows users to browse, search, filter, and explore podcasts. Users can view detailed podcast information, browse seasons and episodes, and navigate through an intuitive, responsive interface. Built to practice React state management, routing, context, API integration, and dynamic user interfaces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📱 Features
 
-## React Compiler
+- Browse podcasts from a live API
+- Search podcasts by title (live filtering)
+- Sort podcasts by newest, oldest, A–Z, or Z–A
+- Filter podcasts by genre
+- Responsive pagination
+- View detailed podcast information
+- Display podcast artwork, description, genres, last updated date, seasons, and total episodes
+- Expand seasons to view episode lists
+- Season dropdown navigation with automatic scrolling to the selected season
+- Display season artwork alongside every episode
+- Shortened episode descriptions for improved readability
+- Responsive layout for desktop and mobile devices
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Setup
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📡 API
+
+Podcast data is fetched from:
+
+https://podcast-api.netlify.app/shows
+
+Podcast details are fetched from:
+
+https://podcast-api.netlify.app/id/:id
+
+Genres are mapped locally using `data.js`.
