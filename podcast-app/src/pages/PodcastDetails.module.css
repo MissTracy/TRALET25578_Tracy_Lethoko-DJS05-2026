@@ -160,3 +160,20 @@
     color: #6b7280;
     line-height: 1.6;
   }
+
+  .seasonHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .seasonHeader select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+  }
+
+  

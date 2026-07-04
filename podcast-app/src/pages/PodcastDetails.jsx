@@ -13,6 +13,7 @@ export default function PodcastDetails() {
     const { id } = useParams();
     const [podcast, setPodcast] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedSeason, setSelectedSeason] = useState(0);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { allPodcasts } = useContext(PodcastContext);
@@ -131,7 +132,24 @@ export default function PodcastDetails() {
             </div>
             </section>  
             <section className={styles.seasons}>
+
+            <div className={styles.seasonHeader}>
               <h2>Current Seasons</h2>
+
+              <select
+                value={selectedSeasonIndex ?? 0}
+                onChange={(e) =>
+                  setSelectedSeasonIndex(Number(e.target.value))
+                }
+              >
+                {podcast.seasons.map((season, index) => (
+                  <option key={index} value={index}>
+                    {season.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
 
               {podcast.seasons.map((season, index) => (
                 <div>
