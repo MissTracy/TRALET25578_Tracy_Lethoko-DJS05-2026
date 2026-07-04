@@ -187,7 +187,8 @@ export default function PodcastDetails() {
 
                   <div>
                     <h3 className={styles.seasonTitle}>
-                    Season {season.season}: {podcast.title}</h3>
+                    Season {season.season}: {season.title}
+                      </h3>
                     <p>{season.episodes.length} Episodes</p>
                   </div>
                 </div>
