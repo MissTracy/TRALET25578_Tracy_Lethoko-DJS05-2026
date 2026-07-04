@@ -13,7 +13,6 @@ export default function PodcastDetails() {
     const { id } = useParams();
     const [podcast, setPodcast] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [selectedSeason, setSelectedSeason] = useState(0);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { allPodcasts } = useContext(PodcastContext);
@@ -132,39 +131,34 @@ export default function PodcastDetails() {
             </div>
             </section>  
             <section className={styles.seasons}>
-
             <div className={styles.seasonHeader}>
               <h2>Current Seasons</h2>
 
               <select
-                value={selectedSeasonIndex ?? 0}
-                onChange={(e) =>
-                  setSelectedSeasonIndex(Number(e.target.value))
-                }
+                value={selectedSeasonIndex ?? ""}
+                onChange={(e) => setSelectedSeasonIndex(Number(e.target.value))}
               >
+                <option value="">Select a season</option>
+
                 {podcast.seasons.map((season, index) => (
-                  <option key={index} value={index}>
+                  <option key={season.season} value={index}>
                     {season.title}
                   </option>
                 ))}
               </select>
             </div>
 
-
-              {podcast.seasons.map((season, index) => (
-                <div>
-
+            {podcast.seasons.map((season, index) => (
+              <div key={season.season}>
 
                 <div
-                    key={season.season}
-                    className={styles.seasonCard}
-                    onClick={() =>
-                      setSelectedSeasonIndex(
-                        selectedSeasonIndex === index ? null : index
-                      )
-                    }
+                  className={styles.seasonCard}
+                  onClick={() =>
+                    setSelectedSeasonIndex(
+                      selectedSeasonIndex === index ? null : index
+                    )
+                  }
                 >
-
                   <img
                     src={season.image}
                     alt={season.title}
@@ -172,30 +166,41 @@ export default function PodcastDetails() {
                   />
 
                   <div>
-                    <h3>{season.title}</h3>
-
+                    <h3 className={styles.seasonTitle}>
+                      {season.title}</h3>
                     <p>{season.episodes.length} Episodes</p>
                   </div>
-                  {selectedSeasonIndex === index && (
-                  <div className={styles.episodeList}>
-                    {season.episodes.map((episode) => (
-                      <div key={episode.episode} className={styles.episodeCard}>
-                        <h4>
+                </div>
+
+              {selectedSeasonIndex === index && (
+                <div className={styles.episodeList}>
+                  {season.episodes.map((episode) => (
+                    <div key={episode.episode} className={styles.episodeCard}>
+                      <img
+                        src={season.image}
+                        alt={season.title}
+                        className={styles.episodeImage}
+                      />
+
+                      <div>
+                        <h4  className={styles.episodeTitle}>
                           Episode {episode.episode}: {episode.title}
                         </h4>
 
-                        <p>{episode.description}</p>
+                        <p>
+                          {episode.description.length > 150
+                            ? episode.description.slice(0, 150) + "..."
+                            : episode.description}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                )}
+                    </div>
+                  ))}
                 </div>
-
-
-              </div>
-
-              ))}
-            </section>               
+              )}
+            </div>
+          ))}
+        </section>
+                         
         </main>
       );
 }

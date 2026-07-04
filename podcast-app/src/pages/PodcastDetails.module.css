@@ -25,11 +25,12 @@
   .info {
     flex: 1;
   }
-  
+
   .title {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
   }
+  
   
   .description {
     color: #4b5563;
@@ -125,16 +126,6 @@
     border-radius: 10px;
   }
   
-  @media (max-width:768px){
-    .seasonCard{
-      flex-direction:column;
-    }
-  
-    .seasonImage{
-      width:100%;
-      height:auto;
-    }
-  }
 
   .episodeList {
     margin-top: 1rem;
@@ -175,5 +166,49 @@
     background: white;
     cursor: pointer;
   }
+  
+  .episodeCard {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  .episodeImage {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+
+  .episodeCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .episodeInfo {
+    flex: 1;
+  }
+  
+  .episodeTitle {
+    margin: 0 0 0.5rem 0;
+  }
+
 
   
+  @media (max-width:768px){
+    .seasonCard{
+      flex-direction:column;
+    }
+  
+    .seasonImage{
+      width:100%;
+      height:auto;
+    }
+  }
