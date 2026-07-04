@@ -9,6 +9,17 @@ import { useContext } from "react";
 import { PodcastContext } from "../context/PodcastContext";
 import { genres } from "../data";
 
+
+/**
+ * Displays detailed information about a selected podcast.
+ *
+ * Fetches the podcast by its ID from the API and displays its metadata,
+ * genres, seasons, and episodes. Users can navigate back, select a season
+ * using the dropdown or by clicking a season card, and expand a season to
+ * view its episodes.
+ *
+ * @returns {JSX.Element} The podcast details page.
+ */
 export default function PodcastDetails() {
     const { id } = useParams();
     const [podcast, setPodcast] = useState(null);
@@ -18,9 +29,16 @@ export default function PodcastDetails() {
     const { allPodcasts } = useContext(PodcastContext);
     const [selectedSeasonIndex, setSelectedSeasonIndex] = useState(null);
  
-    
-
+    /**
+     * Fetches the selected podcast from the API whenever the route ID changes.
+     */
     useEffect(() => {
+        /**
+         * Retrieves the selected podcast from the API and updates component state.
+         *
+         * @async
+         * @returns {Promise<void>}
+         */
         async function fetchPodcast() {
           try {
             const response = await fetch(
@@ -39,36 +57,37 @@ export default function PodcastDetails() {
             setLoading(false);
           }
         }
-      
+
         fetchPodcast();
-      }, [id]);
 
-      if (loading) {
-        return <p>Loading podcast...</p>;
-      }
-      
-      if (error) {
-        return <p>{error}</p>;
-      }
-      
-      if (!podcast) {
-        return <p>Podcast not found.</p>;
-      }
+        }, [id]);
 
-      const totalEpisodes = podcast.seasons.reduce(
-        (total, season) => total + season.episodes.length,
-        0
-      );
+        if (loading) {
+          return <p>Loading podcast...</p>;
+        }
+        
+        if (error) {
+          return <p>{error}</p>;
+        }
+        
+        if (!podcast) {
+          return <p>Podcast not found.</p>;
+        }
 
-      const previewPodcast = allPodcasts.find(
-        (p) => p.id === podcast.id
-      );
+        /**
+         * Calculates the total number of episodes across all seasons.
+         */
+        const totalEpisodes = podcast.seasons.reduce(
+          (total, season) => total + season.episodes.length,
+          0
+        );
 
-
-      console.log("Podcast:", podcast);
-      console.log("4j:", podcast.genres);
-      console.log("Keys:", Object.keys(podcast));
-
+        /**
+        * Retrieves the preview podcast from context to access its genre IDs.
+        */
+        const previewPodcast = allPodcasts.find(
+          (p) => p.id === podcast.id
+        );
 
       return (
         <main className={styles.container}>
@@ -130,6 +149,7 @@ export default function PodcastDetails() {
                 </div>
             </div>
             </section>  
+            {/* season navigation */}
             <section className={styles.seasons}>
             <div className={styles.seasonHeader}>
               <h2>Current Seasons</h2>
@@ -186,7 +206,7 @@ export default function PodcastDetails() {
                         <h4  className={styles.episodeTitle}>
                           Episode {episode.episode}: {episode.title}
                         </h4>
-
+                        {/* Display a short description*/}
                         <p>
                           {episode.description.length > 150
                             ? episode.description.slice(0, 150) + "..."

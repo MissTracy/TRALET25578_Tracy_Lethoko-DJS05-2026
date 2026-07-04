@@ -9,9 +9,16 @@ import GenreFilter from "../components/GenreFilter";
 import PodcastGrid from "../components/PodcastGrid";
 import Pagination from "../components/Pagination";
 
-
+/**
+ * Home page component.
+ *
+ * Displays the podcast catalogue along with search, sorting,
+ * filtering, pagination, and loading/error states.
+ *
+ * @param {{loading: boolean, error: string | null}} props
+ * @returns {JSX.Element}
+ */
 export default function Home({ loading, error })  {
-
 
   return (
     <>
