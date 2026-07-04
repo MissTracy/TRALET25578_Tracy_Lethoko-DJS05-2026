@@ -1,7 +1,7 @@
 
 
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PodcastDetails.module.css";
 import { formatDate } from "../utils/formatDate";
@@ -28,6 +28,7 @@ export default function PodcastDetails() {
     const navigate = useNavigate();
     const { allPodcasts } = useContext(PodcastContext);
     const [selectedSeasonIndex, setSelectedSeasonIndex] = useState(null);
+    const seasonRefs = useRef([]);
  
     /**
      * Fetches the selected podcast from the API whenever the route ID changes.
@@ -156,7 +157,15 @@ export default function PodcastDetails() {
 
               <select
                 value={selectedSeasonIndex ?? ""}
-                onChange={(e) => setSelectedSeasonIndex(Number(e.target.value))}
+                onChange={(e) => {
+                  const index = Number(e.target.value);
+                  setSelectedSeasonIndex(index);
+                
+                  seasonRefs.current[index]?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
               >
                 <option value="">Select a season</option>
 
@@ -172,11 +181,10 @@ export default function PodcastDetails() {
               <div key={season.season}>
 
                 <div
+                  ref={(el) => (seasonRefs.current[index] = el)}
                   className={styles.seasonCard}
                   onClick={() =>
-                    setSelectedSeasonIndex(
-                      selectedSeasonIndex === index ? null : index
-                    )
+                    setSelectedSeasonIndex(index)
                   }
                 >
                   <img
