@@ -142,7 +142,7 @@ export default function PodcastDetails() {
 
                 {podcast.seasons.map((season, index) => (
                   <option key={season.season} value={index}>
-                    {season.title}
+                     Season {season.season}
                   </option>
                 ))}
               </select>
@@ -167,7 +167,7 @@ export default function PodcastDetails() {
 
                   <div>
                     <h3 className={styles.seasonTitle}>
-                      {season.title}</h3>
+                    Season {season.season}: {podcast.title}</h3>
                     <p>{season.episodes.length} Episodes</p>
                   </div>
                 </div>
